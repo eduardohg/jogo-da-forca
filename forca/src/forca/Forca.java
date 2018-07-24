@@ -17,7 +17,7 @@ public class Forca {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String nome;
+        String nome,palavra;
         int index;
         
         Scanner ler = new Scanner(System.in);
@@ -27,8 +27,10 @@ public class Forca {
         
         Palavra p1 = new Palavra();    
         index = p1.getIndexAleatorio();
-        System.out.println("Palavra aleatoria: "+p1.getPalavra(index));
         System.out.println("O tema é : "+p1.getTema(index));
+        palavra = p1.getPalavra(index);
+        System.out.println("A palavra tem "+palavra.length()+" letras");
+        System.out.println("A palavra era "+palavra);
         
     }
     
