@@ -44,20 +44,20 @@ public class Client {
              }
              	
         }
-       System.out.println("Esperando a palavra...");
-       while(true) {
-    	   if((receiveMessage = receiveRead.readLine()) != null) //receive from server
-           {
-           	int tam = receiveMessage.length();
-           	System.out.println("A palavra tem tamanho "+tam);
-//          System.out.println(receiveMessage); // displaying at DOS prompt
-           	break;
+        System.out.println("Esperando a palavra...");
+        while(true) {
+        	if((receiveMessage = receiveRead.readLine()) != null) //receive from server
+        	{
+        		int tam = receiveMessage.length();
+			   	System.out.println("A palavra tem tamanho "+tam);
+	//          System.out.println(receiveMessage); // displaying at DOS prompt
+			   	break;
             
-           }       
-       }
-               
-        while(true)
-        {
+        	}
+        }
+
+        boolean logic = true;
+        while (logic) {
 
         	System.out.print("1 - Chutar Letra\n2 - Chutar palavra\n");
         	int op = ler.nextInt();
@@ -75,15 +75,41 @@ public class Client {
         	}
         	else {
         		sendMessage = read.readLine();  // keyboard reading
-        		pwrite.println(sendMessage);       // sending to server
-        		pwrite.flush();                    // flush the data
+        		pwrite.println(sendMessage);    // sending to server
+        		pwrite.flush();                 // flush the data
         	}
+        	
+        	while (true) {
+                if ((receiveMessage = receiveRead.readLine()) != null) { //receive from server
+			       	System.out.println(receiveMessage); // displaying at DOS prompt
+			       	
+			       	while (true) {
+		                if((receiveMessage = receiveRead.readLine()) != null) { //receive from server
+					       	
+					       	if (receiveMessage.equals("Se fudeu") ||  receiveMessage.equals("Até que enfim!")) {
+						       	System.out.println(receiveMessage); // displaying at DOS prompt
+					       		logic = false;
+					       	}
+					       	
+					       	break;
+		                }
+
+		           }
+			       	
+//			       	if (receiveMessage.equals("Encerra") ||  receiveMessage.equals("Parabéns! Você acertou!")) {
+//			       		logic = false;
+//			       	}
+			       	
+			       	break;
+                }
+
+           }
 //        	if((receiveMessage = receiveRead.readLine()) != null) //receive from server
 //    		{
 //    			System.out.println(receiveMessage); // displaying at DOS prompt
 //    		}     
 //        	receiveRead.readLine();
-        	System.out.println(Server.str1);
+//        	System.out.println(Server.str1);
         	 	   
          } 
 	}

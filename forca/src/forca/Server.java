@@ -44,7 +44,8 @@ public class Server {
 				pwrite.flush();
 				
 				sendMessage = sendMessage.toLowerCase();
-				str1 = formataString(sendMessage.length());//Coloca underlines
+				String string = sendMessage;
+				formataString(sendMessage.length());//Coloca underlines
 				String str2 = str1; //String cópia para comparações
 				
 				while(true)
@@ -59,47 +60,65 @@ public class Server {
 							//Pega char
 							char c = receiveMessage.charAt(0); 
 							//Verifica se existe a letra na string e faz o retorno da String
-							str1 = trataRetorno(c,str1,sendMessage);
+							trataRetorno(c, sendMessage);
 							
-							System.out.println("String: "+str1);//String
+//							System.out.println("String: "+str1);//String
 							
 							//Se str1 igual a str2 então jogador não acertou a letra
 							if(str1.equals(str2))
 								erro++;
 							
-							//Printa na tela do jogador a string formatada
-							//Não está funcionando
-//							pwrite.println(str1);             
-//							pwrite.flush();     
-							
+							if (str1.equals(sendMessage)) {
+								//Caso o jogador tenha acetado a palavra
+								
+								pwrite.println(str1);
+								pwrite.flush();
+								
+								pwrite.println("Até que enfim!");             
+								pwrite.flush();
+								break;
+							}
+							else {
+								//Printa na tela do jogador a string formatada
+								pwrite.println(str1);
+								pwrite.flush();
+								
+								pwrite.println("Continua");
+								pwrite.flush();
+							}
 							str2 = str1;
-						}   
+						}
 					}	
 					if(erro == 5) {
-						System.out.println("Encerra");
+						pwrite.println(str1);
+						pwrite.flush();
+						
+						pwrite.println("Se fudeu!");             
+						pwrite.flush();
+//						System.out.println("Encerra");
 						break;
 					}
 				}
 				
 	}
 	
-	public static String trataRetorno(char c,String str,String sendMessage) {
+	public static void trataRetorno(char c, String sendMessage) {
 		
-		for(int i =0;i<sendMessage.length();i++) {
-			if(c == sendMessage.charAt(i)) {
-				str = str.substring (0, i) + c + str.substring (i+1);
+		for (int i =0; i<sendMessage.length(); i++) {
+			if (c == sendMessage.charAt(i)) {
+				str1 = str1.substring (0, i) + c + str1.substring (i+1);
 			
 			}
 		}
-		return str;
+//		return str;
 	}
 	
-	public static String formataString(int tam) {
-		String str = "";
+	public static void formataString(int tam) {
+		str1 = "";
 		for(int i=0;i<tam;i++) {
-			str = str.concat("_");
+			str1 = str1.concat("_");
 		}
-		return str;
+//		return str1;
 	}
 	
 	public static String espacoString(String str) {
