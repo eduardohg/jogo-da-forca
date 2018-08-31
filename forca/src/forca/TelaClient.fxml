@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="forca.TelaClientController">
+   <children>
+      <Label layoutX="529.0" layoutY="516.0" text="A palavra possui" />
+      <Label layoutX="665.0" layoutY="516.0" text="letras." />
+      <Label fx:id="qtd_letras" layoutX="647.0" layoutY="516.0" text="X" />
+   </children>
+</AnchorPane>
