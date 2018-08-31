@@ -18,7 +18,7 @@ public class Client {
 		System.out.println("Digite seu nick de Jogador: ");
 		String nick = ler.next();
 		
-		Socket cliente = new Socket("localhost", 12346);
+		Socket cliente = new Socket("191.52.64.26", 12346);
         System.out.println("O Jogador "+nick+" se conectou ao Jogo!");
 
         BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
