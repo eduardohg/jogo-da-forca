@@ -1,4 +1,5 @@
 package forca;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.Scanner;
 
 public class Server {
 	public static String str1;
+	private static int acertos=0;
 	
 	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
@@ -88,8 +90,8 @@ public class Server {
 //								System.out.println("Encerra");
 						break;
 					}
-					else {								
-						if (str1.equals(sendMessage)) {
+					else {
+						if (acertos == sendMessage.length()) {
 							//Caso o jogador tenha acertado a palavra		
 							pwrite.println("Finalmente acertou!");             
 							pwrite.flush();
@@ -112,9 +114,12 @@ public class Server {
 	public static boolean trataRetorno(char c, String sendMessage) {
 		boolean logic = false;
 		
-		for (int i =0; i<sendMessage.length(); i++) {
+		for (int i=0; i<sendMessage.length(); i++) {
 			if (c == sendMessage.charAt(i)) {
-				str1 = str1.substring (0, i) + c + str1.substring (i+1);
+				if (str1.charAt(i*2) != c) {					
+					str1 = str1.substring (0, i*2) + c + str1.substring (i*2+1);
+					acertos++;
+				}
 				logic = true;
 			}
 		}
@@ -123,9 +128,10 @@ public class Server {
 	
 	public static void formataString(int tam) {
 		str1 = "";
-		for(int i=0;i<tam;i++) {
-			str1 = str1.concat("_");
+		for(int i=0;i<tam-1;i++) {
+			str1 = str1.concat("_ ");
 		}
+		str1 = str1.concat("_");
 //		return str1;
 	}
 	

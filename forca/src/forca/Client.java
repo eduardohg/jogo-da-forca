@@ -56,7 +56,9 @@ public class Client {
         }
 
         boolean logic = true;
+        boolean logic2;
         while (logic) {
+        	logic2 = false;
         	System.out.print("1 - Chutar Letra\n2 - Chutar palavra\n");
         	int op = ler.nextInt();
         	System.out.println("Digite:");
@@ -66,8 +68,13 @@ public class Client {
             		pwrite.println(sendMessage);       // sending to server
             		pwrite.flush();                    // flush the data	    
             	}
+            	else if (sendMessage.length() == 0) {
+            		System.out.println("Deve digitar pelo menos uma letra!\n");
+            		logic2 = true;
+            	}
             	else {
-            		System.out.println("Só é permitido uma letra!");
+            		System.out.println("Só é permitido uma letra!\n");
+            		logic2 = true;
             	}       
         	}
         	else if (op == 2) {
@@ -79,9 +86,9 @@ public class Client {
         		System.out.println("Opção inválida!");
         	}
         	
-        	while (true) {
+        	while (true && !logic2) {
         		if ((receiveMessage = receiveRead.readLine()) != null) { //receive from server
-        			System.out.println(">>>>>>>>>>>>>>" + receiveMessage); // displaying at DOS prompt
+        			System.out.println(receiveMessage + "\n"); // displaying at DOS prompt
 			       	
 			       	while (true) {
 		                if((receiveMessage = receiveRead.readLine()) != null) { //receive from server
@@ -96,7 +103,6 @@ public class Client {
 
 			       	break;
         		}
-
         	}
         }
 
