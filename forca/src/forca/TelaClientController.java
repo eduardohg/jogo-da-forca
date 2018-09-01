@@ -15,6 +15,7 @@ public class TelaClientController implements Initializable {
 
     @FXML
     private Label qtd_letras;
+    private Label tema;
 
     @FXML
     private void loadTela(ActionEvent actionEvent) {
