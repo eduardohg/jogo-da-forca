@@ -15,25 +15,19 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Client extends Application{
+public class Client {
 
-	@Override
-	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("TelaInicialClient.fxml"));
-
-		Scene scene = new Scene(root);
-
-		stage.setScene(scene);
-		stage.show();
-
-		stage.setFullScreen(true);
+	void runClient(String ip) throws Exception{
+		Socket cliente = new Socket(ip, 12346);
+		System.out.println("TESTEE");
 	}
 
-	public static void main(String[] args) throws UnknownHostException, IOException {
+	String esperaResposta(Socket cliente) throws IOException {
+		BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
+		OutputStream ostream = cliente.getOutputStream();
+       PrintWriter pwrite = new PrintWriter(ostream, true);
 
-		launch(args);
-
-
+	}
 //		// TODO Auto-generated method stub
 //		Scanner ler = new Scanner(System.in);
 //		System.out.println("Digite seu nick de Jogador: ");
@@ -128,6 +122,6 @@ public class Client extends Application{
 //        }
 //
 //        ler.close();
-	}
+
 
 }
