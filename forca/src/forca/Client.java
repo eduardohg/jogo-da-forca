@@ -17,16 +17,51 @@ import javafx.stage.Stage;
 
 public class Client {
 
-	void runClient(String ip) throws Exception{
-		Socket cliente = new Socket(ip, 12346);
+	public static Socket socket;
+
+//	public Socket getSocket(){
+//		return this.socket;
+//	}
+
+	public void runClient(String ip) throws Exception{
+		this.socket = new Socket(ip, 12346);
 		System.out.println("TESTEE");
+		System.out.println("SOCKET >"+socket);
 	}
 
-	String esperaResposta(Socket cliente) throws IOException {
-		BufferedReader read = new BufferedReader(new InputStreamReader(System.in));
-		OutputStream ostream = cliente.getOutputStream();
-       PrintWriter pwrite = new PrintWriter(ostream, true);
+	public String esperaTema() throws IOException {
+		String receiveMessage;
 
+		InputStream istream = socket.getInputStream();
+        BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
+
+		while (true) {
+			if ((receiveMessage = receiveRead.readLine()) != null) { //receive from server
+				System.out.println("O tema é " + receiveMessage); // displaying at DOS prompt
+				break;
+			}
+		}
+		return receiveMessage;
+	}
+
+	public int esperaTamPalavra(Socket cliente) throws IOException {
+		String receiveMessage;
+		int tam;
+
+		InputStream istream = cliente.getInputStream();
+		BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
+
+		System.out.println("\nEsperando a palavra...");
+		while (true) {
+			if ((receiveMessage = receiveRead.readLine()) != null) //receive from server
+			{
+				tam = receiveMessage.length();
+				System.out.println("A palavra tem tamanho "+tam+"\n\n");
+				//          System.out.println(receiveMessage); // displaying at DOS prompt
+				break;
+			}
+		}
+		return tam;
 	}
 //		// TODO Auto-generated method stub
 //		Scanner ler = new Scanner(System.in);

@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,6 +32,7 @@ public class TelaInicialClientController implements Initializable {
                 case ENTER: {
                     String ip = text_field.getText();
                     Client cliente = new Client();
+
                     try {
                         cliente.runClient(ip);
 //                        Parent root = FXMLLoader.load(getClass().getResource("TelaEsperandoTemaClient.fxml"));

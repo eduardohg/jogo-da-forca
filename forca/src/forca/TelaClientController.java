@@ -30,6 +30,23 @@ public class TelaClientController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Controller controller = new Controller();
 
+        System.out.println("AAAAAAAAAAAAA");
+        Client client = new Client();
+        String tema = null;
+        System.out.println("socketttt "+client.socket);
+        try {
+            tema = client.esperaTema();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("TEMA: "+tema);
+//        try {
+
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
 
     }
 
